@@ -8,12 +8,33 @@
       "id": 3,
       "ideas": {
         "1": {
-          "title": "Grapgui",
+          "title": "Graph GUI",
           "id": 5
         },
         "2": {
           "title": "Buttons",
           "id": 6
+        },
+        "3": {
+          "title": "Input Box",
+          "id": 11,
+          "ideas": {
+            "1": {
+              "title": "Button für Eingabe von sin/cos/^",
+              "id": 12,
+              "attr": {
+                "style": {
+                  "background": "#00CCFF"
+                },
+                "progress": "under-review"
+              }
+            }
+          },
+          "attr": {
+            "style": {
+              "background": false
+            }
+          }
         }
       },
       "attr": {
@@ -34,7 +55,9 @@
           118,
           3
         ],
-        "style": {}
+        "style": {
+          "background": false
+        }
       }
     },
     "-1": {
@@ -49,6 +72,10 @@
           "title": "Solver",
           "id": 8
         }
+      },
+      "attr": {
+        "progress": "1",
+        "style": {}
       }
     }
   },
@@ -73,5 +100,52 @@
         }
       }
     }
-  ]
+  ],
+  "attr": {
+    "progress-statuses": {
+      "": {
+        "description": "Not Started",
+        "priority": 1,
+        "style": {
+          "background": false
+        }
+      },
+      "passing": {
+        "description": "Done",
+        "style": {
+          "background": "#00CC00"
+        }
+      },
+      "under-review": {
+        "description": "Under review",
+        "style": {
+          "background": "#00CCFF"
+        }
+      },
+      "in-progress": {
+        "description": "In Progress",
+        "priority": 3,
+        "style": {
+          "background": "#FFCC00"
+        }
+      },
+      "blocked": {
+        "description": "Blocked",
+        "priority": 4,
+        "style": {
+          "background": "#990033"
+        }
+      },
+      "parked": {
+        "description": "Parked",
+        "priority": 2,
+        "style": {
+          "background": "#FF3300"
+        }
+      }
+    },
+    "style": {
+      "background": false
+    }
+  }
 }

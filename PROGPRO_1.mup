@@ -1,0 +1,77 @@
+{
+  "title": "PROGPRO_1",
+  "id": 1,
+  "formatVersion": 2,
+  "ideas": {
+    "1": {
+      "title": "Frontend",
+      "id": 3,
+      "ideas": {
+        "1": {
+          "title": "Grapgui",
+          "id": 5
+        },
+        "2": {
+          "title": "Buttons",
+          "id": 6
+        }
+      },
+      "attr": {
+        "position": [
+          207.5,
+          13,
+          2
+        ],
+        "style": {}
+      }
+    },
+    "2": {
+      "title": "API",
+      "id": 9,
+      "attr": {
+        "position": [
+          36.5,
+          118,
+          3
+        ],
+        "style": {}
+      }
+    },
+    "-1": {
+      "title": "Backend",
+      "id": 4,
+      "ideas": {
+        "1": {
+          "title": "Stringparser",
+          "id": 7
+        },
+        "2": {
+          "title": "Solver",
+          "id": 8
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "ideaIdFrom": 9,
+      "ideaIdTo": 3,
+      "attr": {
+        "style": {
+          "color": "#FF0000",
+          "lineStyle": "dashed"
+        }
+      }
+    },
+    {
+      "ideaIdFrom": 9,
+      "ideaIdTo": 4,
+      "attr": {
+        "style": {
+          "color": "#FF0000",
+          "lineStyle": "dashed"
+        }
+      }
+    }
+  ]
+}

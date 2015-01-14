@@ -58,6 +58,20 @@
         "style": {
           "background": false
         }
+      },
+      "ideas": {
+        "1": {
+          "title": "Clear",
+          "id": 13
+        },
+        "2": {
+          "title": "Y-Einstellung",
+          "id": 14
+        },
+        "3": {
+          "title": "Punkt X/Y setzen",
+          "id": 15
+        }
       }
     },
     "-1": {

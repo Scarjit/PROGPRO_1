@@ -1,0 +1,7 @@
+Auf www.mindmup.com habe ich eine Mindmap erstellt, wie ich mir das Program ungefähr vorstelle
+Geht einfach auf www.mindmup.com 
+- File 
+- Open/Import 
+- Open from Github
+- Logt euch ein
+- Wählt die .mup datei in PROGPRO_1 aus

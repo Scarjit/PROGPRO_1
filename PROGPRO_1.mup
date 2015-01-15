@@ -9,7 +9,17 @@
       "ideas": {
         "1": {
           "title": "Graph GUI",
-          "id": 5
+          "id": 5,
+          "ideas": {
+            "1": {
+              "title": "math pixel -> Graph pixel",
+              "id": 16
+            },
+            "2": {
+              "title": "Multiple graphen",
+              "id": 17
+            }
+          }
         },
         "2": {
           "title": "Buttons",
@@ -20,7 +30,7 @@
           "id": 11,
           "ideas": {
             "1": {
-              "title": "Button für Eingabe von sin/cos/^",
+              "title": "Button fuer Eingabe von sin/cos/^",
               "id": 12,
               "attr": {
                 "style": {
@@ -51,8 +61,8 @@
       "id": 9,
       "attr": {
         "position": [
-          36.5,
-          118,
+          10.5,
+          235,
           3
         ],
         "style": {

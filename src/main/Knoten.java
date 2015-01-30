@@ -1,4 +1,4 @@
-package scanner_parser;
+package main;
 
 public abstract class Knoten {
 	private static int numCount = 1;

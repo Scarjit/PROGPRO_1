@@ -1,4 +1,4 @@
-package scanner_parser;
+package main;
 
 public class Variable extends Knoten {
 	private String name;

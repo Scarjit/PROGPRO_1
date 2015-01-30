@@ -1,4 +1,4 @@
-package scanner_parser;
+package main;
 
 public abstract class DyadOp extends Knoten{
 	protected Knoten leftOp;

@@ -1,6 +1,6 @@
-package scanner_parser;
+package main;
 
-import scanner_parser.DyadOp;
+import main.DyadOp;
 
 public class DivOp extends DyadOp{
 	@Override

@@ -1,4 +1,4 @@
-package scanner_parser;
+package main;
 
 public class Ganzzahl extends Knoten {
 	private int wert;

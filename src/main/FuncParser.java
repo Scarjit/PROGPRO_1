@@ -1,8 +1,8 @@
-package scanner_parser;
+package main;
 
 import java.util.*;
 
-import scanner_parser.DivOp;
+import main.DivOp;
 
 public class FuncParser {
 /*

@@ -1,9 +1,9 @@
-package scanner_parser;
+package main;
 
-public class SubOp extends DyadOp {
+public class AddOp extends DyadOp {
 	@Override
 	public void print() {
-		System.out.println("Knoten " + num + " Sub ");
+		System.out.println("Knoten " + num + " Add ");
 		System.out.println("linker Operrand: " + leftOp.getNum());
 		System.out.println("rechter Operrand: " + rightOp.getNum());
 		System.out.println();

@@ -1,4 +1,4 @@
-package scanner_parser;
+package main;
 
 public class MultOp extends DyadOp{
 	@Override

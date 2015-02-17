@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import java.awt.Canvas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
 
 public class GUIHandler extends JFrame {
@@ -56,15 +58,41 @@ public class GUIHandler extends JFrame {
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.setBounds(10, 475, 89, 23);
 		contentPane.add(btnRefresh);
+		btnRefresh.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//refresh
+			}
+		});
 		
 		JButton btnClearAll = new JButton("Clear All");
 		btnClearAll.setBounds(109, 475, 89, 23);
 		contentPane.add(btnClearAll);
-		
+		btnClearAll.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				inp1.setText("");
+				inp2.setText("");
+				inp3.setText("");
+				inp4.setText("");
+				inp5.setText("");
+				inp6.setText("");
+				inp7.setText("");
+				inp8.setText("");
+				inp9.setText("");
+				inp10.setText("");
+				repaint();
+			}
+		});
 		JButton btnExit = new JButton("Exit");
 		btnExit.setBounds(562, 475, 89, 23);
 		contentPane.add(btnExit);
-		
+		btnExit.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		inp1 = new JTextField();
 		inp1.setBounds(10, 258, 641, 15);
 		contentPane.add(inp1);

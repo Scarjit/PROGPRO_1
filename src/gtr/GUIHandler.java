@@ -7,7 +7,9 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 
+import javax.script.ScriptException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,9 +21,14 @@ import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
+import java.util.HashMap;
 
 public class GUIHandler extends JFrame {
 
+	int xmax = 0;
+	int xmin = 0;
+	static int width = 0;
+	static int height = 0;
 	private JPanel contentPane;
 	private JTextField inp1;
 	private JTextField inp2;
@@ -32,9 +39,12 @@ public class GUIHandler extends JFrame {
 	private JTextField inp7;
 	private JTextField inp8;
 	private JTextField inp9;
-	private JTextField inp10;
-	private JPanel panel;
+	private JTextField inp10;	
+	private JPanel panel;	
 	public static void main(String[] args) {
+		Dimension displaysize = Toolkit.getDefaultToolkit().getScreenSize();
+		width = (int) displaysize.getWidth()-150;
+		height = (int) displaysize.getHeight()-150;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -49,7 +59,7 @@ public class GUIHandler extends JFrame {
 
 	public GUIHandler() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 677, 548);
+		setBounds(75, 75, width, height);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,11 +67,16 @@ public class GUIHandler extends JFrame {
 		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.setBounds(10, 475, 89, 23);
-		contentPane.add(btnRefresh);
+		contentPane.add(btnRefresh);		
 		btnRefresh.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//refresh
+				try {
+					HashMap<Integer, Double> punkte1 = Parser.parse(inp1.getText());
+					//draw(punkte1);
+				} catch (ScriptException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		

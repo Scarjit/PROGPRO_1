@@ -27,8 +27,8 @@ public class GUIHandler extends JFrame {
 
 	int xmax = 0;
 	int xmin = 0;
-	static int width = 0;
-	static int height = 0;
+	static int width = 1240;
+	static int height = 860;
 	private JPanel contentPane;
 	private JTextField inp1;
 	private JTextField inp2;
@@ -39,12 +39,11 @@ public class GUIHandler extends JFrame {
 	private JTextField inp7;
 	private JTextField inp8;
 	private JTextField inp9;
-	private JTextField inp10;	
-	private JPanel panel;	
+	private JTextField inp10;
+	private JPanel panel;
+
 	public static void main(String[] args) {
-		Dimension displaysize = Toolkit.getDefaultToolkit().getScreenSize();
-		width = (int) displaysize.getWidth()-150;
-		height = (int) displaysize.getHeight()-150;
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -60,30 +59,32 @@ public class GUIHandler extends JFrame {
 	public GUIHandler() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(75, 75, width, height);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnRefresh = new JButton("Refresh");
-		btnRefresh.setBounds(10, 475, 89, 23);
-		contentPane.add(btnRefresh);		
-		btnRefresh.addActionListener(new ActionListener(){
+		btnRefresh.setBounds(10, 530, 89, 23);
+		contentPane.add(btnRefresh);
+		btnRefresh.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					HashMap<Integer, Double> punkte1 = Parser.parse(inp1.getText());
-					//draw(punkte1);
+					HashMap<Integer, Double> punkte1 = Parser.parse(inp1
+							.getText());
+					// draw(punkte1);
 				} catch (ScriptException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		
+
 		JButton btnClearAll = new JButton("Clear All");
-		btnClearAll.setBounds(109, 475, 89, 23);
+		btnClearAll.setBounds(109, 530, 89, 23);
 		contentPane.add(btnClearAll);
-		btnClearAll.addActionListener(new ActionListener(){
+		btnClearAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				inp1.setText("");
@@ -100,78 +101,78 @@ public class GUIHandler extends JFrame {
 			}
 		});
 		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(562, 475, 89, 23);
+		btnExit.setBounds(850, 530, 89, 23);
 		contentPane.add(btnExit);
-		btnExit.addActionListener(new ActionListener(){
+		btnExit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 		inp1 = new JTextField();
-		inp1.setBounds(10, 258, 641, 15);
+		inp1.setBounds(10, 570, 930, 15);
 		contentPane.add(inp1);
 		inp1.setColumns(10);
-		
+
 		inp2 = new JTextField();
 		inp2.setColumns(10);
-		inp2.setBounds(10, 280, 641, 15);
+		inp2.setBounds(10, 590, 930, 15);
 		contentPane.add(inp2);
-		
+
 		inp3 = new JTextField();
 		inp3.setColumns(10);
-		inp3.setBounds(10, 300, 641, 15);
+		inp3.setBounds(10, 610, 930, 15);
 		contentPane.add(inp3);
-		
+
 		inp4 = new JTextField();
 		inp4.setColumns(10);
-		inp4.setBounds(10, 320, 641, 15);
+		inp4.setBounds(10, 630, 930, 15);
 		contentPane.add(inp4);
-		
+
 		inp5 = new JTextField();
 		inp5.setColumns(10);
-		inp5.setBounds(10, 340, 641, 15);
+		inp5.setBounds(10, 650, 930, 15);
 		contentPane.add(inp5);
-		
+
 		inp6 = new JTextField();
 		inp6.setColumns(10);
-		inp6.setBounds(10, 360, 641, 15);
+		inp6.setBounds(10, 670, 930, 15);
 		contentPane.add(inp6);
-		
+
 		inp7 = new JTextField();
 		inp7.setColumns(10);
-		inp7.setBounds(10, 380, 641, 15);
+		inp7.setBounds(10, 690, 930, 15);
 		contentPane.add(inp7);
-		
+
 		inp8 = new JTextField();
 		inp8.setColumns(10);
-		inp8.setBounds(10, 400, 641, 15);
+		inp8.setBounds(10, 710, 930, 15);
 		contentPane.add(inp8);
-		
+
 		inp9 = new JTextField();
 		inp9.setColumns(10);
-		inp9.setBounds(10, 420, 641, 15);
+		inp9.setBounds(10, 730, 930, 15);
 		contentPane.add(inp9);
-		
+
 		inp10 = new JTextField();
 		inp10.setColumns(10);
-		inp10.setBounds(10, 440, 641, 15);
+		inp10.setBounds(10, 750, 930, 15);
 		contentPane.add(inp10);
-		
-		panel = new JPanel(){
+
+		panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
-					public void paintComponent( Graphics g ) {
-	                    super.paintComponent(g);
-	                    Graphics2D g2 = (Graphics2D)g;
-	                    Line2D line = new Line2D.Double(10, 10, 40, 40);
-	                    g2.setColor(Color.blue);
-	                    g2.setStroke(new BasicStroke(10));
-	                    g2.draw(line);
-	                 }
-	            };
-		panel.setBounds(0, 0, 661, 254);
+
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawLine(0, 260,width ,260 );
+				g.drawLine(620, 0, 620, height);
+				g.drawLine(0, 519, width, 519);
+			}
+
+		};
+		panel.setBounds(0, 0, width, 520);
 		contentPane.add(panel);
-	//	panel.repaint();
+
 	}
 
 }

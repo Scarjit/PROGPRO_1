@@ -41,7 +41,7 @@ public class GUIHandler extends JFrame {
 	private JTextField inp9;
 	private JTextField inp10;
 	private JPanel panel;
-
+	HashMap<Integer, HashMap<Integer, Double>> graphs = new HashMap<Integer, HashMap<Integer, Double>>();
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -72,9 +72,18 @@ public class GUIHandler extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					HashMap<Integer, Double> punkte1 = Parser.parse(inp1
-							.getText());
-					// draw(punkte1);
+					graphs.put(0, Parser.parse(inp1.getText()));
+					graphs.put(1, Parser.parse(inp2.getText()));
+					graphs.put(2, Parser.parse(inp3.getText()));
+					graphs.put(3, Parser.parse(inp4.getText()));
+					graphs.put(4, Parser.parse(inp5.getText()));
+					graphs.put(5, Parser.parse(inp6.getText()));
+					graphs.put(6, Parser.parse(inp7.getText()));
+					graphs.put(7, Parser.parse(inp8.getText()));
+					graphs.put(8, Parser.parse(inp9.getText()));
+					graphs.put(9, Parser.parse(inp10.getText()));
+					repaint();
+					
 				} catch (ScriptException e1) {
 					e1.printStackTrace();
 				}
@@ -97,6 +106,7 @@ public class GUIHandler extends JFrame {
 				inp8.setText("");
 				inp9.setText("");
 				inp10.setText("");
+				graphs.clear();
 				repaint();
 			}
 		});
@@ -167,6 +177,15 @@ public class GUIHandler extends JFrame {
 				g.drawLine(0, 260,width ,260 );
 				g.drawLine(620, 0, 620, height);
 				g.drawLine(0, 519, width, 519);
+				g.drawString("0", (int) width/2, 260);
+				for(int i=0;i<graphs.size();i++){
+					for(int i2=0;i2<graphs.get(i).size();i2++){
+						System.out.println(i2 + " : " + graphs.get(i).get(i2));
+						if(!((graphs.get(i).get(i2)) == null)){
+							g.drawRect(i2+360, 520-((int) Math.floor( graphs.get(i).get(i2))), 1, 1);
+						}
+					}
+				}
 			}
 
 		};

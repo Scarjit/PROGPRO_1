@@ -242,12 +242,28 @@ public class GUIHandler extends JFrame {
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
+				int maxY = 0;
+				int minY = 9999999;
+				int curY = 0;
 				for (int i7 = 0; i7 < graphs.size(); i7++) {
 					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
-						System.out.println((i8-Math.abs(xmini)) + "- " + graphs.get(i7).get(i8));
+						curY = (int) Math.floor(graphs.get(i7).get(i8));
+						if(curY > maxY){
+							System.out.println("New Max Y:" + curY);
+							maxY = curY;
+						}
+						if(curY < minY){
+							System.out.println("New Min Y:" + curY);
+							minY = curY;
+						}
+					}
+				}
+				for (int i7 = 0; i7 < graphs.size(); i7++) {
+					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
+					//	System.out.println((i8-Math.abs(xmini)) + "- " + graphs.get(i7).get(i8));
 						if(graphs.get(i7).get(i8) != null){
 							g.drawRect((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse , (260-(520/(xmax-xmini+1))*(int) Math.floor(graphs.get(i7).get(i8))), 1, 1);
-							System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
+						//	System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
 							
 						}
 					}

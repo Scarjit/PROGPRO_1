@@ -27,6 +27,7 @@ public class GUIHandler extends JFrame {
 
 	int xmax = 0;
 	int xmin = 0;
+	int yAchse = 607;
 	static int width = 1240;
 	static int height = 860;
 	private JPanel contentPane;
@@ -40,8 +41,14 @@ public class GUIHandler extends JFrame {
 	private JTextField inp8;
 	private JTextField inp9;
 	private JTextField inp10;
+	private JTextField xminTF;
+	private JTextField xmaxTF;
+	private JLabel xminJF;
+	private JLabel xmaxJF;
 	private JPanel panel;
+
 	HashMap<Integer, HashMap<Integer, Double>> graphs = new HashMap<Integer, HashMap<Integer, Double>>();
+
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -71,21 +78,47 @@ public class GUIHandler extends JFrame {
 		btnRefresh.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					graphs.put(0, Parser.parse(inp1.getText()));
-					graphs.put(1, Parser.parse(inp2.getText()));
-					graphs.put(2, Parser.parse(inp3.getText()));
-					graphs.put(3, Parser.parse(inp4.getText()));
-					graphs.put(4, Parser.parse(inp5.getText()));
-					graphs.put(5, Parser.parse(inp6.getText()));
-					graphs.put(6, Parser.parse(inp7.getText()));
-					graphs.put(7, Parser.parse(inp8.getText()));
-					graphs.put(8, Parser.parse(inp9.getText()));
-					graphs.put(9, Parser.parse(inp10.getText()));
+				// HIER KOMMT DER SHIAAT
+				if (!(Integer.parseInt(xminTF.getText()) >= Integer
+						.parseInt(xmaxTF.getText()))) {
+
+					int signum = Long.signum(Integer.parseInt(xminTF.getText())
+							* Integer.parseInt(xmaxTF.getText()));
+
+					switch (signum) {
+					case (0):
+						if (Integer.parseInt(xminTF.getText()) == 0) {
+							yAchse = 0;
+						} else {
+							yAchse = 1215;
+						}
+
+					case (1):
+						if (Integer.parseInt(xminTF.getText()) > 0) {
+							yAchse = 0;
+						} else {
+							yAchse = 1215;
+						}
+
+					case (-1):
+						yAchse = (1215 * (-1 * Integer.parseInt(xminTF
+								.getText())))
+								/ (Integer.parseInt(xmaxTF.getText()) - Integer
+										.parseInt(xminTF.getText()));
+
+					}
+					try {
+						HashMap<Integer, Double> punkte1 = Parser.parse(inp1
+								.getText());
+						// draw(punkte1);
+					} catch (ScriptException e1) {
+						e1.printStackTrace();
+					}
+					System.out.println(signum);
+					System.out.println(Integer.parseInt(xminTF.getText()));
+					System.out.println(yAchse);
 					repaint();
-					
-				} catch (ScriptException e1) {
-					e1.printStackTrace();
+
 				}
 			}
 		});
@@ -106,7 +139,6 @@ public class GUIHandler extends JFrame {
 				inp8.setText("");
 				inp9.setText("");
 				inp10.setText("");
-				graphs.clear();
 				repaint();
 			}
 		});
@@ -169,23 +201,46 @@ public class GUIHandler extends JFrame {
 		inp10.setBounds(10, 750, 930, 15);
 		contentPane.add(inp10);
 
+		xminTF = new JTextField();
+		xminTF.setText("-10");
+		xminTF.setColumns(10);
+		xminTF.setBounds(1030, 570, 190, 15);
+		contentPane.add(xminTF);
+
+		xmaxTF = new JTextField();
+		xmaxTF.setText("10");
+		xmaxTF.setColumns(10);
+		xmaxTF.setBounds(1030, 590, 190, 15);
+		contentPane.add(xmaxTF);
+
+		xminJF = new JLabel("xMin: ");
+		xminJF.setBounds(998, 570, 50, 15);
+		contentPane.add(xminJF);
+
+		xmaxJF = new JLabel("xMax: ");
+		xmaxJF.setBounds(994, 590, 50, 15);
+		contentPane.add(xmaxJF);
+
 		panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawLine(0, 260,width ,260 );
-				g.drawLine(620, 0, 620, height);
+				// Koordinatensystem
+				// X-Achse
+				g.drawLine(0, 260, width, 260);
+				// Y-Achse
+				g.drawLine(yAchse + 10, 0, yAchse + 10, height);
+				// xMin
+				g.drawLine(10, 260, 10, 265);
+				// xMax
+				g.drawLine(1225, 260, 1225, 265);
+				// Abstand zwischen xMin und xMax -> 1215
+				// y-achse einrückung = 1215 * betrag von xMin / betrag von Xmin
+				// + xMax
+
+				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
-				g.drawString("0", (int) width/2, 260);
-				for(int i=0;i<graphs.size();i++){
-					for(int i2=0;i2<graphs.get(i).size();i2++){
-						System.out.println(i2 + " : " + graphs.get(i).get(i2));
-						if(!((graphs.get(i).get(i2)) == null)){
-							g.drawRect(i2+360, 520-((int) Math.floor( graphs.get(i).get(i2))), 1, 1);
-						}
-					}
-				}
 			}
 
 		};

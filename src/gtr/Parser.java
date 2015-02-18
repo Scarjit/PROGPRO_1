@@ -7,20 +7,22 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 
 public class Parser {
+	//HashMap deklarieren, in der die Koordinaten später gespeichert werden
 	static HashMap<Integer, Double> koordinaten = new HashMap<Integer, Double>();
 
 	public static HashMap<Integer, Double> parse(String args)
 			throws ScriptException {
-		if (!(args.length() == 0)) {
-			validieren(args);
-			return koordinaten;
+		if (!(args.length() == 0)) { //falls die eingegebene String nicht leer ist
+			validieren(args);   	
+			return koordinaten;		//berechnete koordinaten werden ausgegeben
 		}
-		koordinaten.put(0, 0.0);
+		koordinaten.put(0, 0.0);	
 		return koordinaten;
 	}
 
 	public static void validieren(String args) throws ScriptException {
 		System.out.println(args);
+		//ersetzen verschiedener mathematischer begriffe durch java-kompatible wendungen
 		args = args.replaceAll("cos", "Math.cos");
 		args = args.replaceAll("sin", "Math.sin");
 		args = args.replaceAll("tan", "Math.tan");
@@ -38,16 +40,17 @@ public class Parser {
 	public static void berechnen(String args) throws ScriptException {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByName("JavaScript");
-		for (int i2 = GUIHandler.xmini; i2 < (GUIHandler.xmaxi+1); i2++) {
-			String temp = args;
-			temp = temp.replace("x", i2 + "");
-			Object x = engine.eval(temp);
-			try {
+		//java script dient der leichteren berechnung der funktionswerte
+		for (int i2 = GUIHandler.xmini; i2 < (GUIHandler.xmaxi+1); i2++) { //jede ganze zahl im angegebenen fenster soll benutzt werden
+			String temp = args;												
+			temp = temp.replace("x", i2 + "");							//für x wird der jeweilige wert eingesetzt; hier noch eine string
+			Object x = engine.eval(temp);								//auswerten des terms durch javascript; hier ein objekt
+			try {														//falls x eine double ist
 				Double y = (Double) x;
-				koordinaten.put(i2+Math.abs(GUIHandler.xmini), y);
-			} catch (Exception e) {
-				int z = (Integer) x;
-				Double a = z + 0.0;
+				koordinaten.put(i2+Math.abs(GUIHandler.xmini), y);		//xmin wird hinzugerechnet da negative werte nicht in die liste passen (wird später abgezogen)				
+			} catch (Exception e) {										//falls x eine int ist
+				int z = (Integer) x;									
+				Double a = z + 0.0;										//konvertierung zur double
 				koordinaten.put(i2+Math.abs(GUIHandler.xmini), a);
 			}
 			System.out.println(koordinaten.get(i2));

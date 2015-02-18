@@ -24,12 +24,17 @@ import java.awt.geom.Line2D;
 import java.util.HashMap;
 
 public class GUIHandler extends JFrame {
-
+	
+	boolean fd = true;
 	int xmax = 0;
 	int xmin = 0;
+	int xAchse = 260;
 	static int xmaxi = 10;
 	static int xmini = -10;
 	int yAchse = 607;
+	int maxY = 0;
+	int minY = 9999999;
+	int curY = 0;
 	static int width = 1240;
 	static int height = 860;
 	private JPanel contentPane;
@@ -81,6 +86,7 @@ public class GUIHandler extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// HIER KOMMT DER SHIAAT
+				graphs.clear();
 				if (!(Integer.parseInt(xminTF.getText()) >= Integer
 						.parseInt(xmaxTF.getText()))) {
 
@@ -114,12 +120,30 @@ public class GUIHandler extends JFrame {
 						// draw(punkte1);
 					} catch (ScriptException e1) {
 						e1.printStackTrace();
-					}
+					}					
 					System.out.println(signum);
 					System.out.println(Integer.parseInt(xminTF.getText()));
 					System.out.println(yAchse);
+					
+					maxY = 0;
+					minY = 9999999;
+					curY = 0;
+					for (int i7 = 0; i7 < graphs.size(); i7++) {
+						for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
+							curY = (int) Math.floor(graphs.get(i7).get(i8));
+							if(curY > maxY){
+								System.out.println("New Max Y:" + curY);
+								maxY = curY;
+							}
+							if(curY < minY){
+								System.out.println("New Min Y:" + curY);
+								minY = curY;
+							}
+						}
+					}
+					System.out.println("XXXX" + minY + "XXXX");
+					xAchse = minY;
 					repaint();
-
 				}
 			}
 		});
@@ -228,8 +252,9 @@ public class GUIHandler extends JFrame {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				// Koordinatensystem
-				// X-Achse
-				g.drawLine(0, 260, width, 260);
+				// X-Achse+
+				System.out.println("xAchse:" + xAchse + " maxY:" + maxY + " minY:" + minY);
+				g.drawLine(0, 520*(maxY)/(Math.abs(minY)+maxY), width,520*(maxY)/(Math.abs(minY)+maxY)); 
 				// Y-Achse
 				g.drawLine(yAchse + 10, 0, yAchse + 10, height);
 				// xMin
@@ -242,27 +267,11 @@ public class GUIHandler extends JFrame {
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
-				int maxY = 0;
-				int minY = 9999999;
-				int curY = 0;
-				for (int i7 = 0; i7 < graphs.size(); i7++) {
-					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
-						curY = (int) Math.floor(graphs.get(i7).get(i8));
-						if(curY > maxY){
-							System.out.println("New Max Y:" + curY);
-							maxY = curY;
-						}
-						if(curY < minY){
-							System.out.println("New Min Y:" + curY);
-							minY = curY;
-						}
-					}
-				}
 				for (int i7 = 0; i7 < graphs.size(); i7++) {
 					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
 					//	System.out.println((i8-Math.abs(xmini)) + "- " + graphs.get(i7).get(i8));
 						if(graphs.get(i7).get(i8) != null){
-							g.drawRect((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse , (260-(520/(xmax-xmini+1))*(int) Math.floor(graphs.get(i7).get(i8))), 1, 1);
+							g.drawRect((i8-Math.abs(xmini))*(620/(xmax-xmini+1))+yAchse , ((520*(maxY)/(Math.abs(minY)+maxY)))-(520/(Math.abs(minY)+maxY+1)*(int) Math.floor(graphs.get(i7).get(i8))), 1, 1);
 						//	System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
 							
 						}

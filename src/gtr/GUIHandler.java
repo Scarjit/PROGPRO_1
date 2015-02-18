@@ -103,10 +103,7 @@ public class GUIHandler extends JFrame {
 						}
 
 					case (-1):
-						yAchse = (1215 * (-1 * Integer.parseInt(xminTF
-								.getText())))
-								/ (Integer.parseInt(xmaxTF.getText()) - Integer
-										.parseInt(xminTF.getText()));
+						yAchse = (1215 * (-1 * Integer.parseInt(xminTF.getText())))/(Integer.parseInt(xmaxTF.getText()) - Integer.parseInt(xminTF.getText()));
 
 					}
 					xmaxi = (Integer.parseInt(xmaxTF.getText()));
@@ -248,7 +245,9 @@ public class GUIHandler extends JFrame {
 				for (int i7 = 0; i7 < graphs.size(); i7++) {
 					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
 						System.out.println(i8 + "- " + graphs.get(i7).get(i8));
-						g.drawRect(i8+yAchse , 580-(int) Math.floor(graphs.get(i7).get(i8)), 10, 10);
+						if(graphs.get(i7).get(i8) != null){
+							g.drawRect(i8+yAchse-Math.abs(GUIHandler.xmini) , 260-(int) Math.floor(graphs.get(i7).get(i8)), 1, 1);
+						}
 					}
 				}
 			}

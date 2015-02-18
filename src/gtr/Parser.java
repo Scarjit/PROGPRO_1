@@ -44,16 +44,21 @@ public class Parser {
 			Object x = engine.eval(temp);
 			try {
 				Double y = (Double) x;
-				koordinaten.put(i2, y);
+				koordinaten.put(i2+Math.abs(GUIHandler.xmini), y);
 			} catch (Exception e) {
 				int z = (Integer) x;
 				Double a = z + 0.0;
-				koordinaten.put(i2, a);
+				koordinaten.put(i2+Math.abs(GUIHandler.xmini), a);
 			}
 			System.out.println(koordinaten.get(i2));
-			if (Double.isInfinite(koordinaten.get(i2))) {
-				System.out.println("check");
-			}
+			
+			//if (Double.isInfinite(koordinaten.get(i2))) {
+			//	System.out.println("check");
+			//}
 		}
+		/* 1215 / Math.abs((int) (GUIHandler.xmini/GUIHandler.xmaxi))
+		 * 520 /
+		 * 
+		*/
 	}
 }

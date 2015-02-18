@@ -27,6 +27,8 @@ public class GUIHandler extends JFrame {
 
 	int xmax = 0;
 	int xmin = 0;
+	static int xmaxi = 10;
+	static int xmini = -10;
 	int yAchse = 607;
 	static int width = 1240;
 	static int height = 860;
@@ -107,9 +109,11 @@ public class GUIHandler extends JFrame {
 										.parseInt(xminTF.getText()));
 
 					}
+					xmaxi = (Integer.parseInt(xmaxTF.getText()));
+					xmini = (Integer.parseInt(xminTF.getText()));
 					try {
-						HashMap<Integer, Double> punkte1 = Parser.parse(inp1
-								.getText());
+						HashMap<Integer, Double> punkte1 = Parser.parse(inp1.getText());
+						graphs.put(0, punkte1);
 						// draw(punkte1);
 					} catch (ScriptException e1) {
 						e1.printStackTrace();
@@ -241,6 +245,12 @@ public class GUIHandler extends JFrame {
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
+				for (int i7 = 0; i7 < graphs.size(); i7++) {
+					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
+						System.out.println(i8 + "- " + graphs.get(i7).get(i8));
+						g.drawRect(i8+yAchse , 580-(int) Math.floor(graphs.get(i7).get(i8)), 10, 10);
+					}
+				}
 			}
 
 		};

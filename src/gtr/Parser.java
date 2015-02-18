@@ -20,25 +20,25 @@ public class Parser {
 	}
 
 	public static void validieren(String args) throws ScriptException {
-			System.out.println(args);
-			args.replaceAll("cos", "Math.cos");
-			args.replaceAll("sin", "Math.sin");
-			args.replaceAll("tan", "Math.tan");
-			args.replaceAll("arcmath.sin", "Math.asin");
-			args.replaceAll("arcmath.cos", "Math.acos");
-			args.replaceAll("arcmath.tan", "Math.atan");
-			args.replaceAll("pi", "Math.pi");
-			args.replaceAll("ln", "Math.log");
-			args.replaceAll("sqrt", "Math.sqrt");
-			args.replaceAll("e", "Math.e");
-			System.out.println(args);
-			berechnen(args);	
+		System.out.println(args);
+		args = args.replaceAll("cos", "Math.cos");
+		args = args.replaceAll("sin", "Math.sin");
+		args = args.replaceAll("tan", "Math.tan");
+		args = args.replaceAll("arcmath.sin", "Math.asin");
+		args = args.replaceAll("arcmath.cos", "Math.acos");
+		args = args.replaceAll("arcmath.tan", "Math.atan");
+		args = args.replaceAll("pi", "Math.pi");
+		args = args.replaceAll("ln", "Math.log");
+		args = args.replaceAll("sqrt", "Math.sqrt");
+		args = args.replaceAll("e", "Math.e");
+		System.out.println(args);
+		berechnen(args);
 	}
 
 	public static void berechnen(String args) throws ScriptException {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByName("JavaScript");
-		for (int i2 = -160; i2 < 2620; i2++) {
+		for (int i2 = GUIHandler.xmini; i2 < (GUIHandler.xmaxi+1); i2++) {
 			String temp = args;
 			temp = temp.replace("x", i2 + "");
 			Object x = engine.eval(temp);

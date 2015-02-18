@@ -268,10 +268,11 @@ public class GUIHandler extends JFrame {
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
 				for (int i7 = 0; i7 < graphs.size(); i7++) {
-					for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
+					for (int i8 = 0; i8 < (xmax-xmini+1); i8++) {
 					//	System.out.println((i8-Math.abs(xmini)) + "- " + graphs.get(i7).get(i8));
 						if(graphs.get(i7).get(i8) != null){
-							g.drawRect((i8-Math.abs(xmini))*(620/(xmax-xmini+1))+yAchse , ((520*(maxY)/(Math.abs(minY)+maxY)))-(520/(Math.abs(minY)+maxY+1)*(int) Math.floor(graphs.get(i7).get(i8))), 1, 1);
+							System.out.println(i8);
+							g.drawRect((i8*(1225/(xmax-xmini+1))), ((520*(maxY)/(Math.abs(minY)+maxY)))-(520/(Math.abs(minY)+maxY+1)*(int) Math.floor(graphs.get(i7).get(i8))), 1, 1);
 						//	System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
 							
 						}

@@ -99,7 +99,10 @@ public class GUIHandler extends JFrame {
 						}
 
 					case (-1):
-						yAchse = (1215 * (-1 * Integer.parseInt(xminTF.getText())))/(Integer.parseInt(xmaxTF.getText()) - Integer.parseInt(xminTF.getText()));
+						yAchse = (1215 * (-1 * Integer.parseInt(xminTF
+								.getText())))
+								/ (Integer.parseInt(xmaxTF.getText()) - Integer
+										.parseInt(xminTF.getText()));
 
 					}
 					xmaxi = (Integer.parseInt(xmaxTF.getText()));
@@ -109,25 +112,25 @@ public class GUIHandler extends JFrame {
 						// draw(punkte1);
 					} catch (ScriptException e1) {
 						e1.printStackTrace();
-					}					
+					}
 					System.out.println(signum);
 					System.out.println(Integer.parseInt(xminTF.getText()));
 					System.out.println(yAchse);
-					
+
 					maxY = 0;
 					minY = 9999999;
 					curY = 0;
-						for (int i8 = 0; i8 < punkte.size(); i8++) {
-							curY = (int) Math.floor(punkte.get(i8));
-							if(curY > maxY){
-								System.out.println("New Max Y:" + curY);
-								maxY = curY;
-							}
-							if(curY < minY){
-								System.out.println("New Min Y:" + curY);
-								minY = curY;
-							}
+					for (int i8 = 0; i8 < punkte.size(); i8++) {
+						curY = (int) Math.floor(punkte.get(i8));
+						if (curY > maxY) {
+							System.out.println("New Max Y:" + curY);
+							maxY = curY;
 						}
+						if (curY < minY) {
+							System.out.println("New Min Y:" + curY);
+							minY = curY;
+						}
+					}
 					System.out.println("XXXX" + minY + "XXXX");
 					xAchse = minY;
 					repaint();
@@ -186,10 +189,12 @@ public class GUIHandler extends JFrame {
 				super.paintComponent(g);
 				// Koordinatensystem
 				// X-Achse+
-				System.out.println("xAchse:" + xAchse + " maxY:" + maxY + " minY:" + minY);
-				g.drawLine(0, 520*(maxY)/(Math.abs(minY)+maxY), width,520*(maxY)/(Math.abs(minY)+maxY)); 
+				System.out.println("xAchse:" + xAchse + " maxY:" + maxY
+						+ " minY:" + minY);
+				g.drawLine(0, 520 * (maxY) / (Math.abs(minY) + maxY), width,
+						520 * (maxY) / (Math.abs(minY) + maxY));
 				// Y-Achse
-				g.drawLine(yAchse + 10, 0, yAchse + 10, height);
+				g.drawLine(yAchse, 0, yAchse, height);
 				// xMin
 				g.drawLine(10, 260, 10, 265);
 				// xMax
@@ -200,21 +205,25 @@ public class GUIHandler extends JFrame {
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
-					for (int i8 = 0; i8 < (xmax-xmini+1); i8++) {
-					//	System.out.println((i8-Math.abs(xmini)) + "- " + graphs.get(i7).get(i8));
-						if(punkte.get(i8) != null){
-							System.out.println(i8);
-							g.drawRect((i8*(1225/(xmax-xmini+1))), ((520*(maxY)/(Math.abs(minY)+maxY)))-(520/(Math.abs(minY)+maxY+1)*(int) Math.floor(punkte.get(i8))), 1, 1);
-						//	System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
-							
-						}
+				for (int i8 = 0; i8 < (xmaxi - xmini + 1); i8++) {
+					// System.out.println((i8-Math.abs(xmini)) + "- " +
+					// graphs.get(i7).get(i8));
+					if (punkte.get(i8) != null) {
+						System.out.println(i8);
+						g.drawRect(
+								(i8 * (1240 / (xmaxi - xmini + 1)))+10,
+								((520 * (maxY) / (Math.abs(minY) + maxY)))
+										- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY)),
+												1, 1);
+						// System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
+
 					}
+				}
 			}
 
 		};
 		panel.setBounds(0, 0, width, 520);
 		contentPane.add(panel);
-
 	}
 
 }

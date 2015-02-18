@@ -24,7 +24,7 @@ import java.awt.geom.Line2D;
 import java.util.HashMap;
 
 public class GUIHandler extends JFrame {
-	
+	private static final long serialVersionUID = 1L;
 	boolean fd = true;
 	int xmax = 0;
 	int xmin = 0;
@@ -39,22 +39,12 @@ public class GUIHandler extends JFrame {
 	static int height = 860;
 	private JPanel contentPane;
 	private JTextField inp1;
-	private JTextField inp2;
-	private JTextField inp3;
-	private JTextField inp4;
-	private JTextField inp5;
-	private JTextField inp6;
-	private JTextField inp7;
-	private JTextField inp8;
-	private JTextField inp9;
-	private JTextField inp10;
 	private JTextField xminTF;
 	private JTextField xmaxTF;
 	private JLabel xminJF;
 	private JLabel xmaxJF;
 	private JPanel panel;
-
-	HashMap<Integer, HashMap<Integer, Double>> graphs = new HashMap<Integer, HashMap<Integer, Double>>();
+	HashMap<Integer, Double> punkte = new HashMap<Integer, Double>();
 
 	public static void main(String[] args) {
 
@@ -86,7 +76,7 @@ public class GUIHandler extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// HIER KOMMT DER SHIAAT
-				graphs.clear();
+				punkte.clear();
 				if (!(Integer.parseInt(xminTF.getText()) >= Integer
 						.parseInt(xmaxTF.getText()))) {
 
@@ -115,8 +105,7 @@ public class GUIHandler extends JFrame {
 					xmaxi = (Integer.parseInt(xmaxTF.getText()));
 					xmini = (Integer.parseInt(xminTF.getText()));
 					try {
-						HashMap<Integer, Double> punkte1 = Parser.parse(inp1.getText());
-						graphs.put(0, punkte1);
+						punkte = Parser.parse(inp1.getText());
 						// draw(punkte1);
 					} catch (ScriptException e1) {
 						e1.printStackTrace();
@@ -128,9 +117,8 @@ public class GUIHandler extends JFrame {
 					maxY = 0;
 					minY = 9999999;
 					curY = 0;
-					for (int i7 = 0; i7 < graphs.size(); i7++) {
-						for (int i8 = 0; i8 < graphs.get(i7).size(); i8++) {
-							curY = (int) Math.floor(graphs.get(i7).get(i8));
+						for (int i8 = 0; i8 < punkte.size(); i8++) {
+							curY = (int) Math.floor(punkte.get(i8));
 							if(curY > maxY){
 								System.out.println("New Max Y:" + curY);
 								maxY = curY;
@@ -140,7 +128,6 @@ public class GUIHandler extends JFrame {
 								minY = curY;
 							}
 						}
-					}
 					System.out.println("XXXX" + minY + "XXXX");
 					xAchse = minY;
 					repaint();
@@ -155,15 +142,6 @@ public class GUIHandler extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				inp1.setText("");
-				inp2.setText("");
-				inp3.setText("");
-				inp4.setText("");
-				inp5.setText("");
-				inp6.setText("");
-				inp7.setText("");
-				inp8.setText("");
-				inp9.setText("");
-				inp10.setText("");
 				repaint();
 			}
 		});
@@ -180,51 +158,6 @@ public class GUIHandler extends JFrame {
 		inp1.setBounds(10, 570, 930, 15);
 		contentPane.add(inp1);
 		inp1.setColumns(10);
-
-		inp2 = new JTextField();
-		inp2.setColumns(10);
-		inp2.setBounds(10, 590, 930, 15);
-		contentPane.add(inp2);
-
-		inp3 = new JTextField();
-		inp3.setColumns(10);
-		inp3.setBounds(10, 610, 930, 15);
-		contentPane.add(inp3);
-
-		inp4 = new JTextField();
-		inp4.setColumns(10);
-		inp4.setBounds(10, 630, 930, 15);
-		contentPane.add(inp4);
-
-		inp5 = new JTextField();
-		inp5.setColumns(10);
-		inp5.setBounds(10, 650, 930, 15);
-		contentPane.add(inp5);
-
-		inp6 = new JTextField();
-		inp6.setColumns(10);
-		inp6.setBounds(10, 670, 930, 15);
-		contentPane.add(inp6);
-
-		inp7 = new JTextField();
-		inp7.setColumns(10);
-		inp7.setBounds(10, 690, 930, 15);
-		contentPane.add(inp7);
-
-		inp8 = new JTextField();
-		inp8.setColumns(10);
-		inp8.setBounds(10, 710, 930, 15);
-		contentPane.add(inp8);
-
-		inp9 = new JTextField();
-		inp9.setColumns(10);
-		inp9.setBounds(10, 730, 930, 15);
-		contentPane.add(inp9);
-
-		inp10 = new JTextField();
-		inp10.setColumns(10);
-		inp10.setBounds(10, 750, 930, 15);
-		contentPane.add(inp10);
 
 		xminTF = new JTextField();
 		xminTF.setText("-10");
@@ -267,17 +200,15 @@ public class GUIHandler extends JFrame {
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
-				for (int i7 = 0; i7 < graphs.size(); i7++) {
 					for (int i8 = 0; i8 < (xmax-xmini+1); i8++) {
 					//	System.out.println((i8-Math.abs(xmini)) + "- " + graphs.get(i7).get(i8));
-						if(graphs.get(i7).get(i8) != null){
+						if(punkte.get(i8) != null){
 							System.out.println(i8);
-							g.drawRect((i8*(1225/(xmax-xmini+1))), ((520*(maxY)/(Math.abs(minY)+maxY)))-(520/(Math.abs(minY)+maxY+1)*(int) Math.floor(graphs.get(i7).get(i8))), 1, 1);
+							g.drawRect((i8*(1225/(xmax-xmini+1))), ((520*(maxY)/(Math.abs(minY)+maxY)))-(520/(Math.abs(minY)+maxY+1)*(int) Math.floor(punkte.get(i8))), 1, 1);
 						//	System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
 							
 						}
 					}
-				}
 			}
 
 		};

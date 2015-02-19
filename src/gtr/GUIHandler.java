@@ -132,7 +132,28 @@ public class GUIHandler extends JFrame {
 						}
 					}
 					System.out.println("XXXX" + minY + "XXXX");
-					xAchse = minY;
+					xAchse = 0;
+					int signum2 = Long.signum(minY * maxY);
+
+					switch (signum2) {
+					case (0):
+						if (maxY == 0) {
+							xAchse = 0;
+						} else {
+							xAchse = 520;
+						}
+
+					case (1):
+						if (maxY > 0) {
+							xAchse = 520;
+						} else {
+							xAchse = 0;
+						}
+
+					case (-1):
+						xAchse = (520*maxY)/(maxY-minY);
+					}
+
 					repaint();
 				}
 			}
@@ -191,8 +212,9 @@ public class GUIHandler extends JFrame {
 				// X-Achse+
 				System.out.println("xAchse:" + xAchse + " maxY:" + maxY
 						+ " minY:" + minY);
-				g.drawLine(0, 520 * (maxY) / (Math.abs(minY) + maxY), width,
-						520 * (maxY) / (Math.abs(minY) + maxY));
+				// g.drawLine(0, 520 * (maxY) / (Math.abs(minY) + maxY), width,
+				// 520 * (maxY) / (Math.abs(minY) + maxY));
+				g.drawLine(0, xAchse, width, xAchse);
 				// Y-Achse
 				g.drawLine(yAchse, 0, yAchse, height);
 				// xMin
@@ -208,17 +230,31 @@ public class GUIHandler extends JFrame {
 				boolean fd1 = true;
 				int xprew = 0;
 				int yprew = 0;
-				for (int i8 = 0; i8 < (xmaxi - xmini + 1); i8++) {			
+				for (int i8 = 0; i8 < (xmaxi - xmini + 1); i8++) {
 					if (punkte.get(i8) != null) {
 						System.out.println(i8);
-						g.drawRect((i8 * (1240 / (xmaxi - xmini + 1)))+10,((520 * (maxY) / (Math.abs(minY) + maxY)))- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY)),1, 1);
-						if(fd1 != true){
+						g.drawRect(
+								(i8 * (1240 / (xmaxi - xmini + 1))) + 10,
+								((520 * (maxY) / (Math.abs(minY) + maxY)))
+										- (520 * (int) Math.floor(punkte
+												.get(i8)) / (Math.abs(minY) + maxY)),
+								1, 1);
+						if (fd1 != true) {
 							System.out.println("Drawing Connection...");
-							g.drawLine(xprew, yprew, (i8 * (1240 / (xmaxi - xmini + 1)))+10, ((520 * (maxY) / (Math.abs(minY) + maxY)))- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY)));
-						}	
-						xprew = (i8 * (1240 / (xmaxi - xmini + 1)))+10;
-						yprew = ((520 * (maxY) / (Math.abs(minY) + maxY)))- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY));
-						System.out.println("xprew: " + xprew + " : yprew: " + yprew);
+							g.drawLine(
+									xprew,
+									yprew,
+									(i8 * (1240 / (xmaxi - xmini + 1))) + 10,
+									((520 * (maxY) / (Math.abs(minY) + maxY)))
+											- (520 * (int) Math.floor(punkte
+													.get(i8)) / (Math.abs(minY) + maxY)));
+						}
+						xprew = (i8 * (1240 / (xmaxi - xmini + 1))) + 10;
+						yprew = ((520 * (maxY) / (Math.abs(minY) + maxY)))
+								- (520 * (int) Math.floor(punkte.get(i8)) / (Math
+										.abs(minY) + maxY));
+						System.out.println("xprew: " + xprew + " : yprew: "
+								+ yprew);
 						fd1 = false;
 
 					}

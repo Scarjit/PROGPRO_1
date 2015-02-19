@@ -70,7 +70,7 @@ public class GUIHandler extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnRefresh = new JButton("Refresh");
+		JButton btnRefresh = new JButton("Zeichen");
 		btnRefresh.setBounds(10, 530, 89, 23);
 		contentPane.add(btnRefresh);
 		btnRefresh.addActionListener(new ActionListener() {
@@ -160,7 +160,7 @@ public class GUIHandler extends JFrame {
 			}
 		});
 
-		JButton btnClearAll = new JButton("Clear All");
+		JButton btnClearAll = new JButton("Löschen");
 		btnClearAll.setBounds(109, 530, 89, 23);
 		contentPane.add(btnClearAll);
 		btnClearAll.addActionListener(new ActionListener() {
@@ -170,7 +170,7 @@ public class GUIHandler extends JFrame {
 				repaint();
 			}
 		});
-		JButton btnExit = new JButton("Exit");
+		JButton btnExit = new JButton("Beenden");
 		btnExit.setBounds(850, 530, 89, 23);
 		contentPane.add(btnExit);
 		btnExit.addActionListener(new ActionListener() {

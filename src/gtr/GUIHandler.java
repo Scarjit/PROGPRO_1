@@ -81,7 +81,6 @@ public class GUIHandler extends JFrame {
 		btnRefresh.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// HIER KOMMT DER SHIAAT
 				punkte.clear();
 				if (!(Integer.parseInt(xminTF.getText()) >= Integer
 						.parseInt(xmaxTF.getText()))) {

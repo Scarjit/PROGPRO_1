@@ -44,21 +44,22 @@ public class GUIHandler extends JFrame {
 	private JLabel zeile2JF;
 	private JLabel zeile3JF;
 	private JPanel panel;
-	
+
 	HashMap<Integer, Double> punkte = new HashMap<Integer, Double>();
 
 	public static void main(String[] args) {
 
-		EventQueue.invokeLater(new Runnable() { // Verhindert die Blockade der GUI durch Funktionen
-			public void run() {
-				try {
-					GUIHandler frame = new GUIHandler();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(new Runnable() { // Verhindert die Blockade der
+												// GUI durch Funktionen
+					public void run() {
+						try {
+							GUIHandler frame = new GUIHandler();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 	}
 
 	public GUIHandler() {
@@ -71,6 +72,7 @@ public class GUIHandler extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// Refresh-Button
 		JButton btnRefresh = new JButton("Zeichnen");
 		btnRefresh.setBounds(10, 530, 89, 23);
 		contentPane.add(btnRefresh);
@@ -78,7 +80,12 @@ public class GUIHandler extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				punkte.clear();
-				if (!(Integer.parseInt(xminTF.getText()) >= Integer
+				if (!(Integer.parseInt(xminTF.getText()) >= Integer // Abtasten
+																	// ob xMin
+																	// kleiner
+																	// xMax ist,
+																	// wenn ja
+																	// switch
 						.parseInt(xmaxTF.getText()))) {
 
 					int signum = Long.signum(Integer.parseInt(xminTF.getText())
@@ -114,9 +121,6 @@ public class GUIHandler extends JFrame {
 					} catch (ScriptException e1) {
 						e1.printStackTrace();
 					}
-					System.out.println(signum);
-					System.out.println(Integer.parseInt(xminTF.getText()));
-					System.out.println(yAchse);
 
 					maxY = 0;
 					minY = 9999999;
@@ -132,7 +136,7 @@ public class GUIHandler extends JFrame {
 							minY = curY;
 						}
 					}
-					System.out.println("XXXX" + minY + "XXXX");
+
 					xAchse = 0;
 					int signum2 = Long.signum(minY * maxY);
 
@@ -152,7 +156,7 @@ public class GUIHandler extends JFrame {
 						}
 
 					case (-1):
-						xAchse = (520*maxY)/(maxY-minY);
+						xAchse = (520 * maxY) / (maxY - minY);
 					}
 
 					repaint();
@@ -160,6 +164,7 @@ public class GUIHandler extends JFrame {
 			}
 		});
 
+		// Löschen-Button
 		JButton btnClearAll = new JButton("Löschen");
 		btnClearAll.setBounds(109, 530, 89, 23);
 		contentPane.add(btnClearAll);
@@ -170,6 +175,8 @@ public class GUIHandler extends JFrame {
 				repaint();
 			}
 		});
+		
+		//Speichern-Button
 		JButton btnSave = new JButton("Speichern");
 		btnSave.setBounds(850, 630, 95, 23);
 		contentPane.add(btnSave);
@@ -187,6 +194,8 @@ public class GUIHandler extends JFrame {
 				System.out.println("String gespeichert");
 			}
 		});
+		
+		//Laden-Button
 		JButton btnLoad = new JButton("Laden");
 		btnLoad.setBounds(850, 600, 95, 23);
 		contentPane.add(btnLoad);
@@ -195,7 +204,8 @@ public class GUIHandler extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String read = null;
 				try {
-					read = new Scanner(new File("GTR.sav")).useDelimiter("\\Z").next();
+					read = new Scanner(new File("GTR.sav")).useDelimiter("\\Z")
+							.next();
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -204,6 +214,8 @@ public class GUIHandler extends JFrame {
 				System.out.println("String geladen");
 			}
 		});
+		
+		//Beenden-Button
 		JButton btnExit = new JButton("Beenden");
 		btnExit.setBounds(1125, 800, 89, 23);
 		contentPane.add(btnExit);
@@ -213,16 +225,19 @@ public class GUIHandler extends JFrame {
 				System.exit(0);
 			}
 		});
-		
+
+		//Potenz-Button
 		JButton btnpow = new JButton("Math.pow()");
 		btnpow.setBounds(10, 680, 150, 23);
 		contentPane.add(btnpow);
 		btnpow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				inp1.setText(inp1.getText()+"Math.pow(basis,exponent)");
+				inp1.setText(inp1.getText() + "Math.pow(basis,exponent)");
 			}
 		});
+		
+		//Eingabefelder
 		inp1 = new JTextField();
 		inp1.setBounds(10, 570, 930, 15);
 		contentPane.add(inp1);
@@ -247,34 +262,30 @@ public class GUIHandler extends JFrame {
 		xmaxJF = new JLabel("xMax: ");
 		xmaxJF.setBounds(994, 590, 50, 15);
 		contentPane.add(xmaxJF);
-		
+
 		zeile0JF = new JLabel("Eingabe für Sonderzeichen:");
 		zeile0JF.setBounds(10, 600, 300, 15);
 		contentPane.add(zeile0JF);
-		
+
 		zeile1JF = new JLabel("cos() : cosinus || sin() : sinus || tan() : tangens");
 		zeile1JF.setBounds(10, 620, 300, 15);
 		contentPane.add(zeile1JF);
-		
+
 		zeile2JF = new JLabel("ln() : logarithmus || sqrt() : wurzel || e() : e");
 		zeile2JF.setBounds(10, 640, 300, 15);
 		contentPane.add(zeile2JF);
-		
+
 		zeile3JF = new JLabel("math.pow(basis,exponent) : basis^exponent");
 		zeile3JF.setBounds(10, 660, 300, 15);
 		contentPane.add(zeile3JF);
-			
+
 		panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				// Koordinatensystem
-				// X-Achse+
-				System.out.println("xAchse:" + xAchse + " maxY:" + maxY
-						+ " minY:" + minY);
-				// g.drawLine(0, 520 * (maxY) / (Math.abs(minY) + maxY), width,
-				// 520 * (maxY) / (Math.abs(minY) + maxY));
+				// X-Achse
 				g.drawLine(0, xAchse, width, xAchse);
 				// Y-Achse
 				g.drawLine(yAchse, 0, yAchse, height);
@@ -282,13 +293,12 @@ public class GUIHandler extends JFrame {
 				g.drawLine(10, 260, 10, 265);
 				// xMax
 				g.drawLine(1225, 260, 1225, 265);
-				g.drawString(maxY+"", yAchse+2, 10);
-				g.drawString(minY+"", yAchse+2, 515);
-				g.drawString(xmaxi+"", 1215, xAchse-2);
-				g.drawString(xmini+"", 5, xAchse-2);
-				// Abstand zwischen xMin und xMax -> 1215
-				// y-achse einrückung = 1215 * betrag von xMin / betrag von Xmin
-				// + xMax
+				// Koordinatenbeschriftung
+				g.drawString(maxY + "", yAchse + 2, 10);
+				g.drawString(minY + "", yAchse + 2, 515);
+				g.drawString(xmaxi + "", 1215, xAchse - 2);
+				g.drawString(xmini + "", 5, xAchse - 2);
+				
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);

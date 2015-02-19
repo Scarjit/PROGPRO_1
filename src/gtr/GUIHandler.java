@@ -43,7 +43,12 @@ public class GUIHandler extends JFrame {
 	private JTextField xmaxTF;
 	private JLabel xminJF;
 	private JLabel xmaxJF;
+	private JLabel zeile0JF;
+	private JLabel zeile1JF;
+	private JLabel zeile2JF;
+	private JLabel zeile3JF;
 	private JPanel panel;
+	
 	HashMap<Integer, Double> punkte = new HashMap<Integer, Double>();
 
 	public static void main(String[] args) {
@@ -179,6 +184,16 @@ public class GUIHandler extends JFrame {
 				System.exit(0);
 			}
 		});
+		
+		JButton btnpow = new JButton("Math.pow()");
+		btnpow.setBounds(10, 680, 150, 23);
+		contentPane.add(btnpow);
+		btnpow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				inp1.setText(inp1.getText()+"Math.pow(basis,exponent)");
+			}
+		});
 		inp1 = new JTextField();
 		inp1.setBounds(10, 570, 930, 15);
 		contentPane.add(inp1);
@@ -203,7 +218,23 @@ public class GUIHandler extends JFrame {
 		xmaxJF = new JLabel("xMax: ");
 		xmaxJF.setBounds(994, 590, 50, 15);
 		contentPane.add(xmaxJF);
-
+		
+		zeile0JF = new JLabel("Eingabe für Sonderzeichen:");
+		zeile0JF.setBounds(10, 600, 300, 15);
+		contentPane.add(zeile0JF);
+		
+		zeile1JF = new JLabel("cos() : cosinus || sin() : sinus || tan() : tangens");
+		zeile1JF.setBounds(10, 620, 300, 15);
+		contentPane.add(zeile1JF);
+		
+		zeile2JF = new JLabel("ln() : logarithmus || sqrt() : wurzel || e() : e");
+		zeile2JF.setBounds(10, 640, 300, 15);
+		contentPane.add(zeile2JF);
+		
+		zeile3JF = new JLabel("math.pow(basis,exponent) : basis^exponent");
+		zeile3JF.setBounds(10, 660, 300, 15);
+		contentPane.add(zeile3JF);
+			
 		panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 

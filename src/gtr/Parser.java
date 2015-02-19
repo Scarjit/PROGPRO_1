@@ -32,6 +32,7 @@ public class Parser {
 		args = args.replaceAll("ln", "Math.log");
 		args = args.replaceAll("sqrt", "Math.sqrt");
 		args = args.replaceAll("e", "Math.e");
+		args = args.replaceAll("-x", "-1*x");
 		System.out.println(args);
 		berechnen(args);
 	}
@@ -61,7 +62,6 @@ public class Parser {
 		}
 		/* 1215 / Math.abs((int) (GUIHandler.xmini/GUIHandler.xmaxi))
 		 * 520 /
-		 * 
 		*/
 	}
 }

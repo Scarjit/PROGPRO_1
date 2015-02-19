@@ -64,6 +64,7 @@ public class GUIHandler extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(75, 75, width, height);
 		setResizable(false);
+		setTitle("GTR");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -221,6 +222,10 @@ public class GUIHandler extends JFrame {
 				g.drawLine(10, 260, 10, 265);
 				// xMax
 				g.drawLine(1225, 260, 1225, 265);
+				g.drawString(maxY+"", yAchse+2, 10);
+				g.drawString(minY+"", yAchse+2, 515);
+				g.drawString(xmaxi+"", 1215, xAchse-2);
+				g.drawString(xmini+"", 5, xAchse-2);
 				// Abstand zwischen xMin und xMax -> 1215
 				// y-achse einrückung = 1215 * betrag von xMin / betrag von Xmin
 				// + xMax

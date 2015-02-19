@@ -75,7 +75,7 @@ public class GUIHandler extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnRefresh = new JButton("Zeichen");
+		JButton btnRefresh = new JButton("Zeichnen");
 		btnRefresh.setBounds(10, 530, 89, 23);
 		contentPane.add(btnRefresh);
 		btnRefresh.addActionListener(new ActionListener() {

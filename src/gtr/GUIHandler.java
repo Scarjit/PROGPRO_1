@@ -205,17 +205,21 @@ public class GUIHandler extends JFrame {
 
 				// Trenn-Linie
 				g.drawLine(0, 519, width, 519);
-				for (int i8 = 0; i8 < (xmaxi - xmini + 1); i8++) {
-					// System.out.println((i8-Math.abs(xmini)) + "- " +
-					// graphs.get(i7).get(i8));
+				boolean fd1 = true;
+				int xprew = 0;
+				int yprew = 0;
+				for (int i8 = 0; i8 < (xmaxi - xmini + 1); i8++) {			
 					if (punkte.get(i8) != null) {
 						System.out.println(i8);
-						g.drawRect(
-								(i8 * (1240 / (xmaxi - xmini + 1)))+10,
-								((520 * (maxY) / (Math.abs(minY) + maxY)))
-										- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY)),
-												1, 1);
-						// System.out.println((i8-Math.abs(xmini))*(1240/(xmax-xmini+1))+yAchse);
+						g.drawRect((i8 * (1240 / (xmaxi - xmini + 1)))+10,((520 * (maxY) / (Math.abs(minY) + maxY)))- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY)),1, 1);
+						if(fd1 != true){
+							System.out.println("Drawing Connection...");
+							g.drawLine(xprew, yprew, (i8 * (1240 / (xmaxi - xmini + 1)))+10, ((520 * (maxY) / (Math.abs(minY) + maxY)))- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY)));
+						}	
+						xprew = (i8 * (1240 / (xmaxi - xmini + 1)))+10;
+						yprew = ((520 * (maxY) / (Math.abs(minY) + maxY)))- (520 * (int) Math.floor(punkte.get(i8)) / (Math.abs(minY) + maxY));
+						System.out.println("xprew: " + xprew + " : yprew: " + yprew);
+						fd1 = false;
 
 					}
 				}

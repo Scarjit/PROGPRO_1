@@ -1,13 +1,7 @@
 package gtr;
 
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
 
 import javax.script.ScriptException;
 import javax.swing.JFrame;
@@ -17,11 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Line2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class GUIHandler extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +49,7 @@ public class GUIHandler extends JFrame {
 
 	public static void main(String[] args) {
 
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() { // Verhindert die Blockade der GUI durch Funktionen
 			public void run() {
 				try {
 					GUIHandler frame = new GUIHandler();
@@ -174,8 +170,42 @@ public class GUIHandler extends JFrame {
 				repaint();
 			}
 		});
+		JButton btnSave = new JButton("Speichern");
+		btnSave.setBounds(850, 630, 95, 23);
+		contentPane.add(btnSave);
+		btnSave.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrintWriter out = null;
+				try {
+					out = new PrintWriter("GTR.sav");
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				out.println(inp1.getText());
+				out.close();
+				System.out.println("String gespeichert");
+			}
+		});
+		JButton btnLoad = new JButton("Laden");
+		btnLoad.setBounds(850, 600, 95, 23);
+		contentPane.add(btnLoad);
+		btnLoad.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String read = null;
+				try {
+					read = new Scanner(new File("GTR.sav")).useDelimiter("\\Z").next();
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				System.out.println(read);
+				inp1.setText(read);
+				System.out.println("String geladen");
+			}
+		});
 		JButton btnExit = new JButton("Beenden");
-		btnExit.setBounds(850, 530, 89, 23);
+		btnExit.setBounds(1125, 800, 89, 23);
 		contentPane.add(btnExit);
 		btnExit.addActionListener(new ActionListener() {
 			@Override
